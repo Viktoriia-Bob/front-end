@@ -1,0 +1,37 @@
+* {
+    background-color: black;
+}
+#buttonGroup {
+    align-content: center;
+    width: auto;
+    margin: 0 20px;
+}
+.imageSong {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+Input {
+    width: 40%;
+}
+#navbar {
+    padding-top: 20px;
+}
+#navbar > * {
+    margin-right: 20px;
+}
+
+.groupSearchFlex {
+    width: 70em;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.groupSearchFlex > * {
+    margin-right: 20px;
+}
+
+Label {
+    background-color: transparent;
+}

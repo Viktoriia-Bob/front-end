@@ -1,0 +1,38 @@
+.popup {
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -60%);
+  width: 50%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 2;
+  border: 1px solid grey;
+}
+
+.selectGroup {
+  width: 80% !important;
+  margin-right: 10px;
+}
+
+.groupFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+Label, option {
+  color: white;
+}
+
+h4 {
+  margin-left: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
