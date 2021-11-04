@@ -10,8 +10,8 @@
     z-index: 2;
 }
 
-.input {
-    margin-bottom: 10px;
+.form-control {
+    width: 100% !important;
 }
 
 .buttons {
@@ -19,3 +19,4 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+

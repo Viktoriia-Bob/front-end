@@ -1,31 +1,48 @@
 import React, {useRef, useState} from "react";
 import { makeRequest } from "../../hooks/request.hook";
-import {Button, Form, Input, Label} from "reactstrap";
+import {Button, Form, Input} from "reactstrap";
 import "./styles.css";
 import {useRouter} from "../../hooks/useRouter.hook";
+import PhoneInput from 'react-phone-input-2'
 
 const Signup = () => {
   const formRef = useRef();
   const router = useRouter();
   const [checkEmail, setCheckEmail] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [code, setCode] = useState(0);
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Array.from(formRef.current.children).map((item) => item.value);
     makeRequest("POST", "/auth/sign-up", {
-      email: data[0],
       password: data[2],
       username: data[1],
-    }).then(({sendToEmail}) => {
-      setCheckEmail(sendToEmail);
+      phoneNumber: phoneNumber,
+    }).then(({sendSms}) => {
+      setCheckEmail(sendSms);
     });
   };
 
   const toSignIn = () => router.push("/sign-in");
 
+  const submitCode = () => {
+      makeRequest("POST", "/auth/confirm-code", {phoneNumber: phoneNumber, code: code}).then(({confirm}) => {
+        if (confirm) {
+          router.push("/sign-in");
+        }
+      })
+  }
+
   return (
     <div className={"signUpForm"}>
       <Form innerRef={formRef} onSubmit={handleSubmit}>
-        <Input className={"inputValue"} type="email" placeholder="Enter your email" />
+        <PhoneInput
+          className={"inputValue"}
+          country={'ua'}
+          value={phoneNumber}
+          onChange={setPhoneNumber}
+          placeholder="Enter your phone number"
+        />
         <Input className={"inputValue"} type="text" placeholder="Enter your user name" />
         <Input className={"inputValue"} type="password" placeholder="Enter your password" />
         <div className="buttons">
@@ -36,7 +53,10 @@ const Signup = () => {
       {(() => {
         if(checkEmail) {
           return (
-            <Label>Please, check your email</Label>
+            <div>
+            <Input className="inputValue" type="text" onChange={(e) => setCode(e.target.value)} />
+            <Button color="warning" type="button" onClick={() => submitCode()}>Submit code</Button>
+            </div>
           )
         }
       })()}

@@ -11,11 +11,23 @@
 }
 
 .inputValue {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+.selected-flag.open {
+    background-color: black !important;
+}
+
+.selected-flag:hover {
+    background-color: black !important;
+}
+
+.country-list > *, .country-list > * > * {
+    background-color: white !important;
 }

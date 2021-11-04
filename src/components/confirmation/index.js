@@ -17,7 +17,7 @@ const Confirmation = () => {
     return (
       <div className="returnGroup">
         <Label>Your email is confirmed!</Label>
-        <Button onClick={returnToSignIn}>Sign In again.</Button>
+        <Button onClick={returnToSignIn}>Sign In</Button>
       </div>
     )
 }

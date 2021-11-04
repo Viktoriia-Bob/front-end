@@ -6,6 +6,7 @@ import Signin from "../components/signin";
 import Signup from "../components/signup";
 import Confirmation from "../components/confirmation";
 import ConfirmationPayload from "../components/confirmationPayload";
+import UserStatistics from "../components/userStatistics";
 
 export const useRoutes = (isAuthenticated) => {
   const userRole = JSON.parse(localStorage.getItem("role"));
@@ -13,6 +14,7 @@ export const useRoutes = (isAuthenticated) => {
     return (
       <Switch>
         <Route exact path="/confirm-payload" component={ConfirmationPayload} />
+        <Route exact path="/statistics/:id" component={UserStatistics} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/user" component={User} />
         <Route path="/" component={userRole ? User : Admin} />

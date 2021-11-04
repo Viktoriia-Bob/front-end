@@ -43,6 +43,7 @@ const Admin = () => {
   };
 
   const goToUserPage = () => router.push('/user');
+  const userStatistics = (id) => router.push('/statistics/' + id);
 
   return (
     <>
@@ -91,6 +92,9 @@ const Admin = () => {
                   );
                 }
               })()}
+              <th>
+                <Button color="warning" onClick={() => userStatistics(id)}>Statistics</Button>
+              </th>
             </tr>
           );
         })}
