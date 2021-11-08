@@ -14,10 +14,10 @@
 Input {
     width: 40%;
 }
-#navbar {
+.navbar {
     padding-top: 20px;
 }
-#navbar > * {
+.navbar > * {
     margin-right: 20px;
 }
 

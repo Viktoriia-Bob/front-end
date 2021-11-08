@@ -2,14 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { makeRequest } from "../../hooks/request.hook";
 import CreateSong from "../createComponents/createSong";
-import {Button, Table} from "reactstrap";
+import {Button, Navbar, Table} from "reactstrap";
 import {useRouter} from "../../hooks/useRouter.hook";
+import "./styles.css";
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
   const { token } = useContext(AuthContext);
   const [showPopUp, setShowPopUp] = useState(false);
   const router = useRouter();
+  const {deleteTokenFromLocalStorage} = useContext(AuthContext);
+
+  const logout = () => {
+    deleteTokenFromLocalStorage();
+    router.push('/sign-in');
+  };
 
   useEffect(() => {
     makeRequest("GET", "/users/", {}, token).then((response) =>
@@ -48,10 +55,12 @@ const Admin = () => {
   return (
     <>
       <div>
-        <Table dark>
-          <thead>
+        <Navbar color='dark' light expand="md" className='adminHeader'>
           <h1>Admin</h1>
-          </thead>
+          <Button color="danger" onClick={logout}>LogOut</Button>
+        </Navbar>
+        <Table dark>
+          <thead></thead>
           <tbody>
         {users?.map(({ username, id, role, isBlocked }) => {
           return (

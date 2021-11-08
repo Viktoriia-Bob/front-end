@@ -1,0 +1,10 @@
+.adminHeader {
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+    color: white !important;
+}
+
+.adminHeader > h1 {
+    background-color: transparent;
+}

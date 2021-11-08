@@ -31,18 +31,14 @@ const User = () => {
   const [fromPrice, setFromPrice] = useState(0);
   const [toPrice, setToPrice] = useState(1000000);
   const [showSongSettings, setShowSongSettings] = useState({show: false, id: 0});
-  const [loggedOut, setLoggedOut] = useState(false);
+  const {deleteTokenFromLocalStorage} = useContext(AuthContext);
   const formRef = useRef();
   const router = useRouter();
 
   const logout = () => {
-    localStorage.clear();
-    setLoggedOut(true);
-  };
-
-  if (loggedOut) {
+    deleteTokenFromLocalStorage();
     router.push('/sign-in');
-  }
+  };
 
   useEffect(() => {
     makeRequest("GET", "/songs/", {}, token).then((response) => {
@@ -103,7 +99,7 @@ const User = () => {
 
   return (
     <div>
-      <Navbar color={'dark'} light expand="md" id={'navbar'}>
+      <Navbar color='dark' light expand="md" className='navbar'>
       <ButtonGroup id={'buttonGroup'}>
         <Button className={'radioButton'} color="warning" onClick={() => handleClick(`all`)}>All</Button>
         <Button className={'radioButton'} color="warning" onClick={() => handleClick(`bought`)}>Bought</Button>
